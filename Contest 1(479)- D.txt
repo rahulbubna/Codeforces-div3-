@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+#include<math.h>
+
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long
+#define pii pair<int,int>
+#define all(x) begin(x), end(x)
+#define loop(i,n) for(int i=0; i<n; i++)
+#define rep(i,a,b,c) for(int i=a; i<b; i+=c)
+#define brep(i,a,b,c) for(int i=a; i>b; i-=c)
+#define tc(t) int t; cin>>t; while(t--)
+#define sz(v) int((v).size())
+#define pb push_back
+
+using namespace std;
+
+ll powerof(ll n)
+{
+	
+    int cnt =0;
+
+	while(n%3 == 0)
+	{
+      n /= 3;
+      cnt++;
+
+	}
+
+	return cnt;
+}
+
+
+
+int main()
+{
+
+#ifndef	ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
+
+	IOS;
+   
+   int n;
+   cin>>n;
+
+   vector<pair<int , ll >> v(n);
+
+   for(int i=0; i<n; i++)
+   {
+   	    cin>>v[i].second;
+   	    v[i].first = v[i].first - powerof(v[i].second);
+   }
+
+   sort(v.begin(), v.end());
+
+   for(auto it : v)
+   	cout<<it.second<<" ";
+
+   return 0;
+
+}
