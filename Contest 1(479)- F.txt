@@ -1,0 +1,84 @@
+#include<bits/stdc++.h>
+#include<math.h>
+
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long
+#define pii pair<int,int>
+#define all(x) begin(x), end(x)
+#define loop(i,n) for(int i=0; i<n; i++)
+#define rep(i,a,b,c) for(int i=a; i<b; i+=c)
+#define brep(i,a,b,c) for(int i=a; i>b; i-=c)
+#define tc(t) int t; cin>>t; while(t--)
+#define sz(v) int((v).size())
+#define pb push_back
+
+const int maxm = 2e5 + 5;
+
+using namespace std;
+
+
+int main()
+{
+
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
+
+  IOS;
+
+  int n;
+  cin >> n;
+
+  int a[n];
+  map<int, int>dp;
+
+
+  loop(i, n)
+  {
+    cin >> a[i];
+  }
+
+  int ans = 0;
+  int indices = 0;
+
+  loop(i, n)
+  {
+    int x = a[i];
+    dp[x] = dp[x - 1] + 1;
+
+    if (ans < dp[x])
+    {
+      ans = dp[x];
+      indices = x;
+    }
+  }
+
+
+  vector<int>res;
+
+  for (int i = n - 1; i >= 0; i--)
+  {
+    if (a[i] == indices)
+    {
+      res.push_back(i);
+      --indices;
+    }
+  }
+
+
+  reverse(res.begin(), res.end());
+
+  cout << res.size() << endl;
+
+  for (auto it : res)
+  {
+    cout << it + 1 << " ";
+  }
+
+
+  return 0;
+
+
+}

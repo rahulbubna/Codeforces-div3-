@@ -1,0 +1,84 @@
+#include<bits/stdc++.h>
+#include<math.h>
+
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long
+#define pii pair<int,int>
+#define all(x) begin(x), end(x)
+#define loop(i,n) for(int i=0; i<n; i++)
+#define rep(i,a,b,c) for(int i=a; i<b; i+=c)
+#define brep(i,a,b,c) for(int i=a; i>b; i-=c)
+#define tc(t) int t; cin>>t; while(t--)
+#define sz(v) int((v).size())
+#define pb push_back
+
+const int maxm = 2e5 + 5;
+
+using namespace std;
+
+vector<int> adj[maxm];
+bool vis[maxm];
+int flag;
+
+
+void dfs(int x)
+{
+  if (!vis[x])
+  {
+    vis[x] = 1;
+
+
+    if (adj[x].size() != 2)
+    {
+      flag = 1;
+
+    }
+
+    rep(i, 0, adj[x].size(), 1)
+    {
+      dfs(adj[x][i]);
+    }
+  }
+}
+
+int main()
+{
+
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
+
+  IOS;
+
+  int n, m;
+  cin >> n >> m;
+  int x, y;
+  int sum = 0;
+
+  while (m--)
+  {
+    cin >> x >> y;
+    adj[x].pb(y);
+    adj[y].pb(x);
+  }
+
+
+  loop(i, n)
+  {
+    if (!vis[i])
+    {
+      flag = 0;
+      dfs(i);
+
+
+      if (!flag)
+      {
+        sum++;
+      }
+    }
+  }
+  cout << sum << endl;
+
+}
