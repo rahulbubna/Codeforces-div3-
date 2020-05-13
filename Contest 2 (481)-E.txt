@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+#include<math.h>
+
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long
+#define pii pair<int,int>
+#define all(x) begin(x), end(x)
+#define loop(i,n) for(int i=0; i<n; i++)
+#define rep(i,a,b,c) for(int i=a; i<b; i+=c)
+#define brep(i,a,b,c) for(int i=a; i>b; i-=c)
+#define tc(t) int t; cin>>t; while(t--)
+#define sz(v) int((v).size())
+#define pb push_back
+
+
+using namespace std;
+
+
+const int INF = (int) 1e9;
+
+
+
+int main()
+{
+
+#ifndef	ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
+
+	IOS;
+
+	int n, w;
+	int a[1001];
+	cin >> n >> w;
+	int ans = 0;
+	int max1 = 0;
+	int min1 = max1;
+	loop(i,n)
+	{
+		cin >> a[i];
+		ans += a[i];
+		max1 = max(max1, ans);
+		min1 = min(min1, ans);
+
+	}
+
+	max1 = w - max1;
+	if (min1 < 0)
+		min1 = -min1;
+	else
+		min1 = 0;
+	if (max1 - min1 >= 0)
+		cout << max1 - min1 + 1 << endl;
+	else
+		cout << 0 << endl;
+	return 0;
+}
